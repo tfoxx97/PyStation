@@ -7,8 +7,8 @@
         <h1 class="jumbotron-heading">Welcome to PyStation!</h1>
         <p class="lead text-muted">Share and read about the best Python resources available!</p>
         <p>
-          <a href="{{ url_for('posts') }}" class="btn btn-primary my-2">See all posts</a>
-          <a href="{{ url_for('create_post', username=current_user.username) }}" class="btn btn-secondary my-2">Write a Post</a>
+          <a href="{{ url_for('posts.get_posts') }}" class="btn btn-primary my-2">See all posts</a>
+          <a href="{{ url_for('posts.create_post', username=current_user.username) }}" class="btn btn-secondary my-2">Write a Post</a>
         </p>
       </div>
     </section>

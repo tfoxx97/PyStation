@@ -4,12 +4,12 @@
     <div class="content-section">
         <div class="media">
             <img class="rounded-circle account-img" style="background-color: blue;" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" width="150" height="150">
-            <a href="{{ url_for('account_pic', username=current_user.username) }}" class="btn-secondary">Update Picture</a>
+            <a href="{{ url_for('users.account_pic', username=current_user.username) }}" class="btn-secondary">Update Picture</a>
             <div class="media-body">
                 <h2>{{ current_user.username }}</h2>
                 <p class="text-secondary">{{ current_user.email }}</p>
             </div>
-            <a href="{{ url_for('account_password', username=current_user.username) }}" class="btn-secondary">Change Password</a>
+            <a href="{{ url_for('users.account_password', username=current_user.username) }}" class="btn-secondary">Change Password</a>
         </div>
     </div>
 {% endblock content %}

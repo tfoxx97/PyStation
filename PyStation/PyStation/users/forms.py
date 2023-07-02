@@ -1,10 +1,9 @@
 import re
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
-from wtforms import validators
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from flask_login import current_user
 from PyStation.models import User
 
 # add additional validators to password to check that password contains letters[aAzZ], numbers[0-9+], and special characters[!@#$%^&*]
@@ -64,19 +63,13 @@ class UpdateAccountForm(FlaskForm):
 
 class UpdatePasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), char_limit, find_special_char])
-    confirm_password = PasswordField('Confirm Password', validators=[validators.EqualTo('password')])
+    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password')])
     submit = SubmitField('Update')
     
 class UpdateProfileForm(FlaskForm):
     # not sure about gifs yet. Working on making them animated instead of still images...
     picture = FileField('Update Profile Picture', validators=[FileRequired('Missing something? -----^'), FileAllowed(['jpg', 'png', 'jpeg', 'gif'])]) # gifs don't actually work; not animated yet
     submit = SubmitField('Upload')
-
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    image_optional = FileField('Cover Photo (optional)', validators=[FileAllowed(['jpg', 'png', 'jpeg', 'gif'])])
-    content = TextAreaField('Content', id="premiumskinsandicons-fluent") #using tinyMCE to add more flavor to textbox
-    submit = SubmitField('Post')
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -89,5 +82,5 @@ class RequestResetForm(FlaskForm):
         
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), char_limit, find_special_char])
-    confirm_password = PasswordField('Confirm Password', validators=[validators.EqualTo('password')])
+    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password')])
     submit = SubmitField('Reset Password')
