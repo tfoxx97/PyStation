@@ -3,24 +3,14 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.tiny.cloud/1/qr14gmf28g28mw7scjq3wjprrtpk9k313fsu0e7qhc5ykw4w/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <link href="ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet">
+    <script src="ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 </head>
 <body>
   <div class="btn-group">
     <li><a href="{{ url_for('main.home') }}" class="btn-secondary">Go Back</a></li>
   </div>
   <div class="content-section">
-    <script>
-      tinymce.init({
-        selector: 'textarea#premiumskinsandicons-fluent',
-        skin: 'fluent',
-        content_css: 'fluent',
-        toolbar_mode: 'floating',
-        plugins: 'advlist anchor autolink charmap code codesample directionality help image editimage insertdatetime link lists media nonbreaking pagebreak preview searchreplace table template tableofcontents visualblocks wordcount',
-        toolbar: 'undo redo | blocks | bold italic strikethrough forecolor backcolor blockquote | link image media codesample | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
-        height: 1024
-      });
-    </script>
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
@@ -51,6 +41,8 @@
                     {{ form.content(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='content') }}
             <div class="form-group">
               {{ form.image_optional.label(class="form-label") }}
               {{ form.image_optional(class="form-control-file") }}

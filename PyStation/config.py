@@ -9,3 +9,6 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+    CKEDITOR_HEIGHT = 500
+    CKEDITOR_ENABLE_CODESNIPPET = True
+    CKEDITOR_CODE_THEME = 'mono-blue'
