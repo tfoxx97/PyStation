@@ -67,8 +67,7 @@ class UpdatePasswordForm(FlaskForm):
     submit = SubmitField('Update')
     
 class UpdateProfileForm(FlaskForm):
-    # not sure about gifs yet. Working on making them animated instead of still images...
-    picture = FileField('Update Profile Picture', validators=[FileRequired('Missing something? -----^'), FileAllowed(['jpg', 'png', 'jpeg', 'gif'])]) # gifs don't actually work; not animated yet
+    picture = FileField('Update Profile Picture', validators=[FileRequired('Missing something? -----^'), FileAllowed(['jpg', 'png', 'jpeg'])]) # gifs don't actually work; not animated yet
     submit = SubmitField('Upload')
 
 class RequestResetForm(FlaskForm):

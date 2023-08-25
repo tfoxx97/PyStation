@@ -61,3 +61,7 @@
 #post{
   margin: 2%
 }
+
+#modal fade {
+    position: relative;
+}

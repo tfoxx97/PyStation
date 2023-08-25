@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_ckeditor import CKEditor
+from flask_migrate import Migrate
 from PyStation.config import Config
 
 
@@ -14,6 +15,7 @@ login = LoginManager()
 login.login_view = 'users.login'
 login.login_message_category = 'info'
 mail = Mail()
+migrate = Migrate()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -24,6 +26,7 @@ def create_app(config_class=Config):
     ckeditor.init_app(app)
     login.init_app(app)
     mail.init_app(app)
+    migrate.init_app(app, db)
 
     from PyStation.users.routes import users 
     from PyStation.posts.routes import posts 
