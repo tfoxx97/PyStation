@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from PyStation import db
 from PyStation.models import Post
 from PyStation.posts.forms import PostForm
-from werkzeug.utils import secure_filename
+from PyStation.posts.utils import save_picture
 import os
 
 posts = Blueprint('posts', __name__)
@@ -29,9 +29,9 @@ def update_post(post_id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.content = form.content.data
-        if form.cover_photo.data: # needed in case no cover photo provided
-            post.thumbnail = form.cover_photo.data.filename
-            form.cover_photo.data.save(os.path.join(current_app.root_path, 'static/thumbnails', form.cover_photo.data.filename))
+        if form.cover_photo.data:
+            cover_photo = save_picture(form.cover_photo.data)
+            post.thumbnail = cover_photo
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('posts.get_posts', post_id=post.id))
@@ -39,7 +39,7 @@ def update_post(post_id):
         form.title.data = post.title
         form.content.data = post.content
         form.cover_photo.data = post.thumbnail
-    return render_template('create_post.html', username=current_user.username, form=form, legend='Update Post')
+    return render_template('update_post.html', username=current_user.username, post=post, form=form, legend='Update Post')
 
 @posts.route("/post/<int:post_id>/delete", methods=['GET', 'POST'])
 def delete_post(post_id):
@@ -56,9 +56,14 @@ def delete_post(post_id):
 def create_post():
     form = PostForm()
     if form.validate_on_submit() and request.method == 'POST':
-        post = Post(title=form.title.data, thumbnail=form.cover_photo.data.filename,
-                    content=form.content.data, author=current_user)
-        form.cover_photo.data.save(os.path.join(current_app.root_path, 'static/thumbnails', form.cover_photo.data.filename))
+        post = Post(
+                title=form.title.data,
+                content=form.content.data, 
+                author=current_user
+        )
+        if form.cover_photo.data:
+            cover_photo = save_picture(form.cover_photo.data)
+            post.thumbnail = cover_photo
         db.session.add(post)
         db.session.commit()
         flash('Post has been successfully created!', 'success')

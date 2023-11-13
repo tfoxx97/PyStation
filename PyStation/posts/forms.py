@@ -6,6 +6,6 @@ from flask_ckeditor import CKEditorField
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    cover_photo = FileField('Cover Photo (optional)', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     content = CKEditorField('Content', validators=[DataRequired()]) 
+    cover_photo = FileField('Cover Photo (optional)', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')

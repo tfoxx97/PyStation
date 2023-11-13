@@ -1,6 +1,126 @@
 :root {
     --jumbotron-padding-y: 3rem;
+    --clr-one: rgb(20, 184, 255);
+    --clr-two-one: rgb(216, 81, 88);
+    --clr-two-two: rgb(138, 58, 185);
+    --clr-two-three: rgb(252, 204, 99);
+    --clr-three: rgb(15, 16, 14);
+    --clr-bg: #1d1e22;
   }
+
+
+/* Twitter */
+a.twitter{
+  display: inline-block; /* needed to change height/width of button */
+  height: 50px;
+  width: 160px; 
+  background: var(--clr-one);
+  color: black;
+  box-shadow: 0 0 5px var(--clr-one),  0 0 8px var(--clr-one);
+  padding: 0;
+  border: 2px solid var(--clr-bg);
+  border-radius: 8px;
+  z-index: 2;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  text-align: center;
+  line-height: 50px;
+}
+
+a.twitter:hover{
+  background-color: transparent;
+  color: var(--clr-one);
+  box-shadow: 0 5px 3px -3px var(--clr-one), 0 -5px 3px -3px var(--clr-one),
+    0 5px 3px -3px var(--clr-one), 0 -5px 3px -3px var(--clr-one);
+}
+
+a.twitter:before, a.twitter:after{
+  z-index: -1;
+  background: var(--clr-one);
+  box-shadow: 0 0 5px var(--clr-one);
+  transition: all 0.3s ease;
+}
+a.twitter:hover:before,
+a.twitter:hover:after {
+  height: 0;
+  background-color: var(--clr-one);
+}
+
+/* Instagram */
+a.instagram{
+  display: inline-block;
+  background: linear-gradient(to bottom right, #405DE6, #833AB4, #C13584, #FD1D1D, #F77737, #FFDC80);
+  color: black;
+  box-shadow: 0 0 5px linear-gradient(to bottom right, #405DE6, #833AB4, #C13584, #FD1D1D, #F77737, #FFDC80),  
+    0 0 8px linear-gradient(to bottom right, #405DE6, #833AB4, #C13584, #FD1D1D, #F77737, #FFDC80);
+  padding: 0;
+  border: 2px solid var(--clr-bg);
+  height: 50px;
+  width: 160px;
+  border-radius: 8px;
+  z-index: 2;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  text-align: center;
+  line-height: 50px;
+}
+
+a.instagram:hover{
+  background-color: transparent;
+  color: var(--clr-two-two);
+  box-shadow: 0 5px 3px -3px var(--clr-two-two), 0 -5px 3px -3px var(--clr-two-two),
+    0 5px 3px -3px var(--clr-two-two), 0 -5px 3px -3px var(--clr-two-two);
+}
+
+a.instagram:before, a.instagram:after{
+  z-index: -1;
+  background: var(--clr-two-two);
+  box-shadow: 0 0 5px var(--clr-two-two);
+  transition: all 0.3s ease;
+}
+a.instagram:hover:before,
+a.instagram:hover:after {
+  height: 0;
+  background-color: linear-gradient(to bottom right, #405DE6, #833AB4, #C13584, #FD1D1D, #F77737, #FFDC80);
+}
+
+/* GitHub */
+a.github{
+  display: inline-block;
+  background: var(--clr-three);
+  color: white;
+  box-shadow: 0 0 5px var(--clr-three),  0 0 8px var(--clr-three);
+  padding: 0;
+  border: 2px solid white;
+  height: 50px;
+  width: 160px;
+  border-radius: 8px;
+  z-index: 2;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  text-align: center;
+  line-height: 50px;
+}
+
+a.github:hover{
+  background-color: transparent;
+  color: var(--clr-three);
+  box-shadow: 0 5px 3px -3px var(--clr-three), 0 -5px 3px -3px var(--clr-three),
+    0 5px 3px -3px var(--clr-three), 0 -5px 3px -3px var(--clr-three);
+}
+
+a.github:before, a.github:after{
+  z-index: -1;
+  background: var(--clr-three);
+  box-shadow: 0 0 5px var(--clr-three);
+  transition: all 0.3s ease;
+}
+a.github:hover:before,
+a.github:hover:after {
+  height: 0;
+  background-color: var(--clr-three);
+}
+
   
   .jumbotron {
     padding-top: var(--jumbotron-padding-y);
