@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_login import current_user
 from PyStation.models import User
 
-# add additional validators to password to check that password contains letters[aAzZ], numbers[0-9+], and special characters[!@#$%^&*]
+#additional validators to check that password contains letters[aAzZ], numbers[0-9+], and special characters[!@#$%^&*]
 def char_limit(form, password):
     message = 'Password must be at least 8 characters long.'
     pattern = r"[a-zA-Z0-9]"
@@ -39,7 +39,6 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Email is already taken. Please try another one.')
 
 class LoginForm(FlaskForm):
-    # in future build, first variable can be email or username
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     signout = BooleanField('Keep Me Logged In')
@@ -67,7 +66,10 @@ class UpdatePasswordForm(FlaskForm):
     submit = SubmitField('Update')
     
 class UpdateProfileForm(FlaskForm):
-    picture = FileField('Update Profile Picture', validators=[FileRequired('Missing something? -----^'), FileAllowed(['jpg', 'png', 'jpeg'])]) # gifs don't actually work; not animated yet
+    picture = FileField('Update Profile Picture', 
+                        validators=[FileRequired('Missing something? -----^'), 
+                        FileAllowed(['jpg', 'png', 'jpeg'])]
+            )
     submit = SubmitField('Upload')
 
 class RequestResetForm(FlaskForm):

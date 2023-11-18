@@ -4,6 +4,7 @@ from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
 from PyStation import mail
+from PyStation.models import User
 
 def save_picture(form_picture):
     '''Save the profile picutre to a given path with unique filename
@@ -32,7 +33,16 @@ def save_picture(form_picture):
 
     return picture_fn
 
-def send_reset_email(user):
+def send_reset_email(user: User):
+    ''' Method responsible for sending reset password email. 
+    
+    Parameters: 
+    -----------
+    user: User
+    
+    Method uses Mail object from flask extension to send reset password email to the 
+    proper recipient with a given serialized token.
+    '''
     token = user.get_reset_token()
     msg = Message('Password Reset Request', 
                   sender='noreply@shreddit.com', 
