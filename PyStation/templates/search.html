@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Search results...</h2>
+    
+{% for result in results %}
+    <div id="results">
+        <a class="mr-2" href="{{ url_for('users.user_posts', username=result.author.username) }}">{{ result.author }}</a>
+        <h2><a class="article-title" href="{{ url_for('posts.post_by_post_id', post_id=result.id) }}">{{ result.title }}</a></h2>
+        <p class="article-content">{{ result.content|safe }}</p>
+    </div>
+{% endfor %}
+{% endblock content %}

@@ -10,3 +10,15 @@ def home():
     page = request.args.get("page", 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=9)
     return render_template('home.html', posts=posts)
+
+@main.route("/search", methods=["GET", "POST"])
+def search():
+    q = request.form.get('q') # using request.args instead of request.form returns None in search input
+    print(q)
+    if q:
+        results = Post.query.filter(Post.content.contains(q) | Post.title.contains(q)).limit(10)
+    else:
+        results = []
+    return render_template("search.html", results=results)
+        
+        
