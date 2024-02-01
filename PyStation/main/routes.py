@@ -13,7 +13,7 @@ def home():
 
 @main.route("/search", methods=["GET", "POST"])
 def search():
-    q = request.form.get('q') # using request.args instead of request.form returns None in search input
+    q = request.form.get('q')
     print(q)
     if q:
         results = Post.query.filter(Post.content.contains(q) | Post.title.contains(q)).limit(10)
