@@ -1,15 +1,75 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Your account</h1>
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" style="background-color: blue;" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" width="150" height="150">
-            <a href="{{ url_for('users.account_pic', username=current_user.username) }}" class="btn-secondary">Update Picture</a>
-            <div class="media-body">
+<style>
+.row-account {
+    border: 2px solid powderblue;
+    width: 75%;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom:0px;
+}
+.row .col.l4{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.image-section {
+    position: relative;
+}
+.username-section {
+    padding: 15px;
+}
+.email-section {
+    padding: 15px;
+}
+.row .col.l8{
+    width: 50%;
+    margin-left: auto;
+    margin-bottom: auto;
+}
+.change_password_pic_section {
+    padding: 15px;
+    margin-top: 40px;
+    margin-left: 25px;
+    margin-right: 45px;
+}
+.update_pic {
+    background-color: #0F0F0F;
+    display: inline-block;
+    text-align: center;
+}
+.change_pass {
+    background-color: #0F0F0F;
+    display: inline-block;
+    text-align: center;
+}
+.view-posts-info {
+    margin: 10px;
+    font-size: 45px;
+}
+
+</style>
+<h1>Your Account</h1>
+    <div class="row-account">
+        <div class="col x13 l4 m4 s12 pic_user_email_section">
+            <div class="image-section">
+                <img class="rounded-circle account-img" style="background-color: blue;" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" width="150" height="150">
+            </div>
+            <div class="username-section">
                 <h2>{{ current_user.username }}</h2>
+            </div>
+            <div class="email-section">
                 <p class="text-secondary">{{ current_user.email }}</p>
             </div>
-            <a href="{{ url_for('users.account_password', username=current_user.username) }}" class="btn-secondary">Change Password</a>
+        </div>
+        <div class="x19 18 m8 s12 change_password_pic_section">
+            <div class="details_section">
+                <a href="{{ url_for('users.account_pic', username=current_user.username) }}" class="btn-secondary update_pic">Update Picture</a>
+                <a href="{{ url_for('users.account_password', username=current_user.username) }}" class="btn-secondary change_pass">Change Password</a>
+            </div>
+        </div>
+        <div class="view-posts-info">
+            <a class="mr-2" href="{{ url_for('users.user_posts', username=current_user.username) }}">View your posts:</a>
         </div>
     </div>
 {% endblock content %}

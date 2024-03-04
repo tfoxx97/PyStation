@@ -63,10 +63,17 @@ def account_pic(username):
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account_pic.html', image_file=image_file, form=form)
 
-@users.route("/account/<username>/changepassword")
+@users.route("/account/<username>/changepassword", methods=['GET', 'POST'])
 @login_required
 def account_password(username):
+    user = User.query.filter_by(username=username)
     form = UpdatePasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash("Password changed!", 'success')
+        return redirect(url_for('users.account', username=username))
     return render_template('account_password.html', form=form)
 
 @users.route("/reset_password", methods=['GET', 'POST'])
