@@ -47,19 +47,57 @@
     margin: 10px;
     font-size: 45px;
 }
+.am1 {
+    box-sizing: border-box;
+    margin: 1rem 0px;
+    min-width: 0px;
+    width: 96%;
+}
+.fm1 {
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    border-image: initial;
+    border-top: 1px solid rgb(231, 231, 231);
+}
+.username-tag{
+    font-size: 1.25em;
+}
+.username-tag-seperator{
+    box-sizing: border-box;
+    margin: 0.25rem 0px;
+    min-width: 0px;
+    width: 69%;
+}
+.email-tag{
+    font-size: 1.25em;
+}
+.email-tag-seperator{
+    box-sizing: border-box;
+    margin: 0.25rem 0px;
+    min-width: 0px;
+    width: 69%;
+}
+
 
 </style>
-<h1>Your Account</h1>
+
     <div class="row-account">
+        <h1 style="margin-left: 5px;">Your Account</h1>
+        <hr width="100%" class="your-account-seperator am1 fm1">
         <div class="col x13 l4 m4 s12 pic_user_email_section">
-            <div class="image-section">
+            <div class="image-section" style="margin-left: 25px;">
                 <img class="rounded-circle account-img" style="background-color: blue;" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" width="150" height="150">
             </div>
             <div class="username-section">
+                <h2 class="username-tag">Username:</h2>
+                <hr width="100%" class="username-tag-seperator">
                 <h2>{{ current_user.username }}</h2>
             </div>
             <div class="email-section">
-                <p class="text-secondary">{{ current_user.email }}</p>
+                <h2 class="email-tag">Username:</h2>
+                <hr width="100%" class="email-tag-seperator">
+                <h2>{{ current_user.email }}</h2>
             </div>
         </div>
         <div class="x19 18 m8 s12 change_password_pic_section">
@@ -71,5 +109,10 @@
         <div class="view-posts-info">
             <a class="mr-2" href="{{ url_for('users.user_posts', username=current_user.username) }}">View your posts:</a>
         </div>
+        {% for post in current_user.posts %}
+            <div class="all-of-the-posts">
+                <a class="posts-by-post-id" href="{{ url_for('posts.post_by_post_id', post_id=post.id) }}" style="margin-left: 15px;">{{ post.title }}</a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock content %}

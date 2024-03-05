@@ -90,9 +90,9 @@ def reset_request():
 
 @users.route("/user/<string:username>/posts")
 def user_posts(username):
+    user = User.query.filter_by(username=username).first()
     page = request.args.get("page", 1, type=int)
-    user = User.query.filter_by(username=username).first_or_404()
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    posts = Post.query.filter_by(user_id=user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
     return render_template('user_posts.html', posts=posts, user=user)
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
