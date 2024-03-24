@@ -1,0 +1,9 @@
+PyStation/static/profile_pics
+PyStation/static/thumbnails
+PyStation/__pycache__/
+PyStation/users.txt
+PyStation/migrations
+PyStation/instance
+*.png
+*.gif
+*.jpeg
