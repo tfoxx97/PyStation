@@ -17,3 +17,7 @@ Purpose of this app is to keep every bit of knowledge as well as life hacks rega
   - https://www.youtube.com/@prettyprinted
   - https://www.youtube.com/@Codemycom
   - https://www.youtube.com/@OnlineTutorialsYT (mainly CSS)
+
+
+## To view my website:
+visit: http://172.235.63.220
